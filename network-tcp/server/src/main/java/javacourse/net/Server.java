@@ -1,13 +1,13 @@
-package edu.javacourse.net;
+package javacourse.net;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+
 
 public class Server {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -66,7 +66,8 @@ class SimpleServer extends Thread{
 
             StringBuilder sb = new StringBuilder("");
             String request = br.readLine();
-            String[] lines = request.split(" \\s+");
+            String[] lines = request.split("\\s+");
+            System.out.println(lines.length);
             String command = lines[0];
             String userName = lines[1];
 
