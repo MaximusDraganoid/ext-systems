@@ -5,8 +5,8 @@ import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-        for (int i = 0; i < 12; i++) {
-            SimpleClient simpleClient = new SimpleClient();
+        for (int i = 0; i < 5; i++) {
+            SimpleClient simpleClient = new SimpleClient(i);
             simpleClient.start();
         }
     }
@@ -14,6 +14,14 @@ public class Client {
 }
 
 class SimpleClient extends Thread {
+
+    private final static String[] COMMAND = {"HELLO", "MORNING", "DAY", "EVENING"};
+
+    public SimpleClient(int cmdNumber) {
+        this.cmdNumber = cmdNumber;
+    }
+
+    private int cmdNumber;
 
     @Override
     public void run() {
@@ -23,7 +31,9 @@ class SimpleClient extends Thread {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-            String sb = "Maxim";
+
+            String command = COMMAND[cmdNumber % COMMAND.length];
+            String sb = command + " Maxim";
 
             bw.write(sb);
             bw.newLine();
