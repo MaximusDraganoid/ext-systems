@@ -21,6 +21,15 @@ public class PersonCheckDao {
             "AND a.street_code = ? " +
             "AND upper(a.building) = upper(?) ";
 
+    public PersonCheckDao() {
+        try {
+            //так как в противном случае ПОЧЕМУ-ТО не можем достучаться до бд
+            Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //метод, который проверяет есть ли такая личность в бд, т.е. проживает ли она по указанному адресу
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckException {
         PersonResponse response = new PersonResponse();
