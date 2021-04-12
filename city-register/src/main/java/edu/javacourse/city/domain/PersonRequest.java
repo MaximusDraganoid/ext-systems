@@ -1,11 +1,13 @@
 package edu.javacourse.city.domain;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class PersonRequest {
     private String surName;
     private String givenName;
     private String patronymicName;
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate dateOfBirthday;
     private String building;
     private String extension;
@@ -75,6 +77,20 @@ public class PersonRequest {
 
     public void setApartment(String apartment) {
         this.apartment = apartment;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonRequest{" +
+                "surName='" + surName + '\'' +
+                ", givenName='" + givenName + '\'' +
+                ", patronymicName='" + patronymicName + '\'' +
+                ", dateOfBirthday=" + dateOfBirthday +
+                ", building='" + building + '\'' +
+                ", extension='" + extension + '\'' +
+                ", apartment='" + apartment + '\'' +
+                ", streetCode=" + streetCode +
+                '}';
     }
 }
 
