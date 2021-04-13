@@ -14,12 +14,12 @@ public class PersonCheckDao {
             "inner join cr_address a on a.address_id = ap.address_id " +
             "where " +
             "CURRENT_DATE  >= ap.start_date AND (CURRENT_DATE <= ap.end_date OR ap.end_date is null) " +
-            "AND upper(p.sur_name) = upper(?) " +
-            "AND upper(p.given_name) = upper(?) " +
-            "AND upper(p.patronymic) = upper(?) " +
+            "AND p.sur_name = ? " +
+            "AND p.given_name = ? " +
+            "AND p.patronymic = ? " +
             "AND p.date_of_birth = ? " +
             "AND a.street_code = ? " +
-            "AND upper(a.building) = upper(?) ";
+            "AND a.building = ? ";
 
     private ConnectionBuilder connectionBuilder;
 
@@ -39,13 +39,13 @@ public class PersonCheckDao {
          */
         String sql = SQL_REQUEST;
         if (request.getExtension() != null) {
-            sql += "AND upper(a.extension) = upper(?) ";
+            sql += "AND a.extension = ? ";
         } else {
             sql += "AND a.extension is null ";
         }
 
         if (request.getApartment() != null) {
-            sql += "AND upper(a.apartment) = upper(?) ";
+            sql += "AND a.apartment = ? ";
         } else {
             sql += "AND a.apartment is null";
         }
@@ -66,7 +66,6 @@ public class PersonCheckDao {
             if (request.getApartment() != null) {
                 stmt.setString(count++, request.getApartment());
             }
-
 
             ResultSet resultSet = stmt.executeQuery();
             if (resultSet.next()) {
