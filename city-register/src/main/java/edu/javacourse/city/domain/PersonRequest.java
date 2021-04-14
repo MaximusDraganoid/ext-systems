@@ -12,16 +12,16 @@ public class PersonRequest {
     private String building;
     private String extension;
     private String apartment;
+    private int streetCode;
 
-    public Integer getStreetCode() {
+
+    public int getStreetCode() {
         return streetCode;
     }
 
-    public void setStreetCode(Integer streetCode) {
+    public void setStreetCode(int streetCode) {
         this.streetCode = streetCode;
     }
-
-    private Integer streetCode;
 
     public String getSurName() {
         return surName;

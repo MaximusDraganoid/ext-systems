@@ -4,8 +4,6 @@ public class PersonResponse {
     private boolean registered;
     private boolean temporal;
 
-
-
     public boolean isRegistered() {
         return registered;
     }

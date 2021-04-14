@@ -15,6 +15,14 @@
             <version>3.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!--подключаем hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.2.Final</version>
+        </dependency>
+
     </dependencies>
 
 </project>

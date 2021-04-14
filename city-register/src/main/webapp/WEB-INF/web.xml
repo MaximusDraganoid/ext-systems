@@ -7,7 +7,7 @@
 
     <display-name>City Register</display-name>
 
-    <!--Конфигурация jersey сервлета для работы с рест  -->
+    <!--Конфигурация jersey сервлета для работы с рест-->
     <servlet>
         <servlet-name>JerseyServlet</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
