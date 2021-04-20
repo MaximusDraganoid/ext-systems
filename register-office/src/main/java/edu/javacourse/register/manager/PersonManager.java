@@ -1,4 +1,4 @@
-package edu.javacourse.register.domain.manager;
+package edu.javacourse.register.manager;
 
 import edu.javacourse.register.domain.Person;
 import org.hibernate.Session;
@@ -7,14 +7,46 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.query.Query;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.text.html.parser.Entity;
 import java.io.Serializable;
 import java.util.List;
 
 public class PersonManager {
     public static void main(String[] args) {
 
+        sessionHibernateExample();
+
+        jpaExample();
+
+    }
+
+    private static void jpaExample() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
+
+        EntityManager em = emf.createEntityManager(); // аналог session в hibernate
+
+        em.getTransaction().begin();
+        Person p = new Person();
+        p.setLastName("Алексей");
+        p.setFirstName("Федоров");
+
+        em.persist(p);
+        System.out.println(p.getPersonId());
+        em.getTransaction().commit();
+        em.close();
+
+        em = emf.createEntityManager();
+        List from_person = em.createQuery("FROM Person").getResultList();
+        from_person.stream().forEach(System.out::println);
+
+        em.close();
+    }
+
+    private static void sessionHibernateExample() {
         System.out.println();
         System.out.println();
         SessionFactory sf = buildSessionFactory();
